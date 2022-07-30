@@ -48,7 +48,7 @@ textarea {
   border-radius: .4em;
   outline: none;
 }
-textarea:active {
+textarea::selection {
   outline: var(--primary-green) solid .2em;
 }
 

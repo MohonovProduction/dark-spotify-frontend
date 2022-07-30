@@ -1,10 +1,15 @@
 <template>
-
+  <HotBar active="your-library" />
 </template>
 
 <script>
+import HotBar from "@/components/HotBar.vue";
+
 export default {
-  name: "YourLibrary"
+  name: "YourLibrary",
+  components: {
+    HotBar
+  }
 }
 </script>
 

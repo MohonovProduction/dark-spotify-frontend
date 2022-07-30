@@ -1,10 +1,15 @@
 <template>
-
+  <HotBar active="search" />
 </template>
 
 <script>
+import HotBar from "@/components/HotBar.vue";
+
 export default {
-  name: "Search"
+  name: "Search",
+  components: {
+    HotBar
+  }
 }
 </script>
 

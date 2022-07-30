@@ -1,10 +1,15 @@
 <template>
-
+  <HotBar active="home"/>
 </template>
 
 <script>
+import HotBar from "@/components/HotBar.vue";
+
 export default {
-  name: "Home"
+  name: "Home",
+  components: {
+    HotBar
+  }
 }
 </script>
 
