@@ -36,6 +36,7 @@ export default {
     justify-items: center;
     padding: 1em 2em;
     user-select: none;
+    background-color: var(--bg);
   }
   .hot-bar__link:link,
   .hot-bar__link:visited,
@@ -58,28 +59,28 @@ export default {
   .hot-bar__link::before {
     content: '';
     display: block;
-    width: 3em;
-    height: 3em;
+    width: 30px;
+    height: 30px;
     background-image: url('../assets/icons.svg');
     background-repeat: no-repeat;
-    background-size: auto 3em;
+    background-size: auto 54px;
   }
   .hot-bar__link-home::before {
-    background-position: -3em 0;
+    background-position: -.5px 0;
   }
   .hot-bar__link--active.hot-bar__link-home::before {
-    background-position: -6em 0;
+    background-position: -34.5px 0;
   }
   .hot-bar__link-search::before {
-    background-position: -9em 0;
+    background-position: -69.5px 0;
   }
   .hot-bar__link--active.hot-bar__link-search::before {
-    background-position: -12em 0;
+    background-position: -103.5px 0;
   }
   .hot-bar__link-your-library::before {
-    background-position: -15em 0;
+    background-position: -137.5px 0;
   }
   .hot-bar__link--active.hot-bar__link-your-library::before {
-    background-position: -18em 0;
+    background-position: -170.5px 0;
   }
 </style>

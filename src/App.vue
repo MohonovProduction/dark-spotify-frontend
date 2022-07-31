@@ -10,6 +10,7 @@
   margin: 0;
   box-sizing: content-box;
   --bg: hsla(0, 0%, 7%, 1);
+  --bg-opacity: hsla(0, 0%, 7%, .8);
   --bg-gray: hsla(0, 0%, 47%, 1);
   --bg-white: hsla(0, 0%, 96%, 1);
   --font-white: hsla(0, 0%, 100%, 1);
@@ -50,6 +51,13 @@ textarea {
 }
 textarea::selection {
   outline: var(--primary-green) solid .2em;
+}
+
+button {
+  border: none;
+  user-select: none;
+  outline: none;
+  padding: .5em;
 }
 
 .button-gray {
