@@ -1,4 +1,7 @@
 <template>
+  <article class="wrapper">
+
+  </article>
   <HotBar active="your-library" />
 </template>
 

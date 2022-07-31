@@ -15,7 +15,9 @@
   --bg-gray: hsla(0, 0%, 47%, 1);
   --bg-white: hsla(0, 0%, 96%, 1);
   --font-white: hsla(0, 0%, 100%, 1);
+  --font-black: hsla(0, 0%, 7%, 1);
   --primary-green: hsla(141, 76%, 48%, 1);
+  --font-family: 'Open Sans', sans-serif;
   font-size: calc(.8em + 1vw);
   font-family: 'Open Sans', sans-serif;
   letter-spacing: .02em;
