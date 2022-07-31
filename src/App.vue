@@ -19,8 +19,9 @@
   font-family: 'Open Sans', sans-serif;
   letter-spacing: .02em;
   word-spacing: .04em;
-  line-height: 1.3em;
+  line-height: 1.5em;
   color: var(--font-white);
+  text-rendering: optimizeLegibility;
   background-color: var(--bg);
   min-height: 100vh;
 }

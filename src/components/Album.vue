@@ -29,7 +29,8 @@ export default {
   height: 6em;
 }
 .album__title {
-  font-size: .7em;
+  font-size: calc(.4rem + .3em);
+  line-height: calc(.8rem + .3em);
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
