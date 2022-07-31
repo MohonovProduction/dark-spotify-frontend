@@ -34,7 +34,7 @@ export default {
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 1em;
     justify-items: center;
-    padding: 1em 2em;
+    padding: 1em;
     user-select: none;
     background-color: var(--bg);
   }
