@@ -28,7 +28,6 @@ export default {
 
 <style scoped>
 .search-header {
-  font-size: .8em;
   padding: 2em 1em;
 }
 .search-textarea-wrapper {

@@ -26,6 +26,7 @@ export default {
   width: 6em;
   height: 6em;
   border-radius: 3em;
+  object-fit: cover;
 }
 .artist__name {
   font-size: calc(.4rem + .3em);

@@ -25,6 +25,7 @@ export default {
 .album__image {
   width: 6em;
   height: 6em;
+  object-fit: cover;
 }
 .album__title {
   font-size: calc(.4rem + .3em);

@@ -13,6 +13,7 @@
   --bg-opacity: hsla(0, 0%, 7%, .8);
   --bg-dark-gray: hsla(0, 0%, 16%, 1);
   --bg-gray: hsla(0, 0%, 47%, 1);
+  --bg-gray-light: hsla(0, 0%, 65%, 1);
   --bg-white: hsla(0, 0%, 96%, 1);
   --font-white: hsla(0, 0%, 100%, 1);
   --font-black: hsla(0, 0%, 7%, 1);
@@ -35,6 +36,10 @@
   padding: 0;
   margin: 0;
   box-sizing: inherit;
+}
+
+.wrapper {
+  min-height: 100vh;
 }
 
 .primary-line {

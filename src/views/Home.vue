@@ -53,12 +53,6 @@ export default {
 }
 </script>
 
-<style>
-.wrapper {
-  min-height: 100vh;
-}
-</style>
-
 <style scoped>
 h2 {
   font-size: 1em;
