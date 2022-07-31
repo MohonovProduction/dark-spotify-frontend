@@ -10,9 +10,7 @@
 export default {
   name: "Album",
   props: [
-    'src',
-    'alt',
-    'title'
+    'src', 'alt', 'title'
   ]
 }
 </script>

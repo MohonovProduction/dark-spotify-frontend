@@ -1,4 +1,5 @@
 <template>
+
   <HotBar active="search" />
 </template>
 

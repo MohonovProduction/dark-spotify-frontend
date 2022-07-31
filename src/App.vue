@@ -11,6 +11,7 @@
   box-sizing: content-box;
   --bg: hsla(0, 0%, 7%, 1);
   --bg-opacity: hsla(0, 0%, 7%, .8);
+  --bg-dark-gray: hsla(0, 0%, 16%, 1);
   --bg-gray: hsla(0, 0%, 47%, 1);
   --bg-white: hsla(0, 0%, 96%, 1);
   --font-white: hsla(0, 0%, 100%, 1);

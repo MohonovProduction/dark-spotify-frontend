@@ -7,7 +7,10 @@
       <button class="recently__notifications"></button>
     </header>
     <div class="recently__scroll">
-      <Album v-for="el in 100" :title="el + ` Ricardo's hit on dark!`" :alt="el" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTwzwD4IspmiyxpCRLd0YMW1atCRRqZu2pXw&usqp=CAU" />
+      <template v-for="el in 50">
+        <Album :title="el + ` Ricardo's hit on dark!`" :alt="el" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTwzwD4IspmiyxpCRLd0YMW1atCRRqZu2pXw&usqp=CAU" />
+        <Artist :name="el" src="https://i.scdn.co/image/ab6761610000e5ebcdce7620dc940db079bf4952" :alt="alt" />
+      </template>
     </div>
   </article>
 
@@ -36,13 +39,14 @@
 </template>
 
 <script>
-import HotBar from "@/components/HotBar.vue";
+import HotBar from "@/components/HotBar";
 import Album from "@/components/Album";
+import Artist from "@/components/Artist";
 
 export default {
   name: "Home",
   components: {
-    HotBar, Album
+    HotBar, Album, Artist
   }
 }
 </script>
@@ -53,12 +57,13 @@ h2 {
 }
 
 .recently {
-  padding: 2em 1em 1em;
+  padding: 2em 0 1em 1em;
 }
 .recently__header {
   display: grid;
   grid-template-columns: 1fr repeat(3, auto);
   grid-gap: .3em;
+  padding-right: 1em;
 }
 .recently__heading {}
 
@@ -96,6 +101,7 @@ h2 {
 .dark-wrapped,
 .friends {
   padding: 1em;
+  padding-right: 0;
 }
 .dark-wrapped__header {
   display: grid;
