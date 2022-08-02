@@ -20,6 +20,18 @@ const routes = [
     path: '/your-library',
     name: 'your-library',
     component: () => import('../views/YourLibrary.vue')
+  },
+  {
+    path: '/playlist',
+    component: () => import('../views/PlayList.vue'),
+    children: [
+      {
+        path: 'new',
+      },
+      {
+        path: ':id'
+      }
+    ]
   }
 ]
 
