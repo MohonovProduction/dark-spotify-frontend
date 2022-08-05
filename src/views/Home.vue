@@ -10,7 +10,7 @@
       <div class="recently__scroll">
         <template v-for="el in 50">
           <Album :title="el + ` Ricardo's hit on dark!`" :alt="el" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTwzwD4IspmiyxpCRLd0YMW1atCRRqZu2pXw&usqp=CAU" />
-          <Artist :name="el" src="https://i.scdn.co/image/ab6761610000e5ebcdce7620dc940db079bf4952" :alt="alt" />
+          <Artist :name="el" src="https://i.scdn.co/image/ab6761610000e5ebcdce7620dc940db079bf4952" :alt="'ssss'" />
         </template>
       </div>
     </article>
@@ -22,8 +22,8 @@
         <h3 class="dark-wrapped__hashtag">#DarkWrapped</h3>
       </header>
       <div class="dark-wrapped__albums">
-        <Album title="Your top songs" src="" alt="" />
-        <Album title="Your artist revealed" src="" alt="" />
+        <Album title="Your top songs" src="" alt="sss" />
+        <Album title="Your artist revealed" src="" alt="sss" />
       </div>
     </article>
 

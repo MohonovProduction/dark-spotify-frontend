@@ -9,14 +9,15 @@
   padding: 0;
   margin: 0;
   box-sizing: content-box;
-  --bg: hsla(0, 0%, 7%, 1);
-  --bg-opacity: hsla(0, 0%, 7%, .8);
-  --bg-dark-gray: hsla(0, 0%, 16%, 1);
-  --bg-gray: hsla(0, 0%, 47%, 1);
-  --bg-gray-light: hsla(0, 0%, 65%, 1);
-  --bg-white: hsla(0, 0%, 96%, 1);
-  --font-white: hsla(0, 0%, 100%, 1);
-  --font-black: hsla(0, 0%, 7%, 1);
+  --bg: hsla(141, 0%, 7%, 1);
+  --bg-dark-gray: hsla(141, 14%, 19%, 1);
+  --bg-dark-red : hsla(0, 14%, 19%, 1);
+  --bg-gray: hsla(141, 0%, 47%, 1);
+  --bg-gray-light: hsla(141, 0%, 65%, 1);
+  --bg-white: hsl(141, 4%, 96%);
+  --font-white: hsl(141, 4%, 96%);
+  --font-lighten-gray: hsl(141, 4%, 86%);
+  --font-black: hsla(141, 0%, 7%, 1);
   --primary-green: hsla(141, 76%, 48%, 1);
   --font-family: 'Open Sans', sans-serif;
   font-size: calc(.8em + 1vw);
@@ -49,16 +50,18 @@
   padding: 0 .25em;
 }
 
-textarea {
+textarea,
+input {
   font-size: 1em;
   color: var(--font-white);
   padding: .5em;
-  background-color: var(--bg-gray);
+  background-color: var(--bg-dark-gray);
   border: none;
   border-radius: .4em;
   outline: none;
 }
-textarea::selection {
+textarea::selection,
+input::selection {
   outline: var(--primary-green) solid .2em;
 }
 
@@ -67,15 +70,5 @@ button {
   user-select: none;
   outline: none;
   padding: .5em;
-}
-
-.button-gray {
-  color: var(--bg);
-  font-weight: 700;
-  padding: 1em 2.5em;
-  background-color: var(--bg-white);
-  border: none;
-  border-radius: 3em;
-  width: min-content;
 }
 </style>
