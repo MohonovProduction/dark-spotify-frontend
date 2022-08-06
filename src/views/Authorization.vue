@@ -51,12 +51,21 @@ export default {
         setTimeout(() => { this.condition.needInput = false }, 600)
         return
       }
+
       User.authorization(this.user)
-        .then(data => {
+        .then(async data => {
+
+          console.log(data)
+
           if (data.ok === false) {
-            console.log(data)
+            return
           }
-          localStorage.setItem('token', data.json().token)
+
+          const response = await data.json()
+
+          console.log(response)
+
+          User.setToken(response.token)
           router.push((this.$route.query.redirect === undefined) ? this.$route.query.redirect : '/')
         })
         .catch(err => console.log(err))

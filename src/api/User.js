@@ -7,7 +7,6 @@ User.authorization = async function(data) {
     return new Promise((resolve, reject) => {
         fetch(`${config.domain}/auth/login`, {
             method: 'POST',
-            mode: 'cors',
             headers: {
                 'Content-Type': 'application/json',
                 'connection': 'keep-alive'
@@ -19,19 +18,14 @@ User.authorization = async function(data) {
     })
 }
 
-User.checkAuthorization = function() {
+User.isAuthorized = function() {
     const token = localStorage.getItem('token')
     console.log('checkAuth', token, typeof token)
-    switch (token) {
-        case null:
-            return false
-        case undefined:
-            return false
-        case '':
-            return false
-        default:
-            return true
-    }
+    return token != null
+}
+
+User.setToken = function(token) {
+    localStorage.setItem('token', token)
 }
 
 export default User
