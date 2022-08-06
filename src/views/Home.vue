@@ -129,6 +129,7 @@ h2 {
 .recently__settings,
 .recently__history {
   display: block;
+  box-sizing: content-box;
   width: 15px;
   height: 15px;
   background-color: hsla(0, 0%, 0%, 0);

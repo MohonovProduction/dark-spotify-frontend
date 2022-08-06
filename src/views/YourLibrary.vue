@@ -70,6 +70,7 @@ export default {
   font-weight: 600;
 }
 .header__button {
+  box-sizing: content-box;
   position: relative;
   background: none;
   width: 1em;
@@ -80,16 +81,17 @@ export default {
 .header__button::after {
   content: '';
   position: absolute;
+  top: 50%;
+  left: 0;
   display: block;
   width: 100%;
   height: 2px;
   background-color: var(--bg-gray-light);
 }
 .header__button::before {
-  top: 50%;
+
 }
 .header__button::after {
-  top: 50%;
   transform: rotate(90deg);
 }
 
