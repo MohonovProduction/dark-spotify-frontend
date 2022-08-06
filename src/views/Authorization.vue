@@ -62,10 +62,10 @@ export default {
           }
 
           const response = await data.json()
-
           console.log(response)
 
           User.setToken(response.token)
+
           router.push((this.$route.query.redirect === undefined) ? this.$route.query.redirect : '/')
         })
         .catch(err => console.log(err))

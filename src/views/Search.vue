@@ -15,12 +15,10 @@
 
 <script>
 import HotBar from "@/components/HotBar.vue";
-import Artist from "@/components/Artist";
 
 export default {
   name: "Search",
   components: {
-    Artist,
     HotBar
   }
 }

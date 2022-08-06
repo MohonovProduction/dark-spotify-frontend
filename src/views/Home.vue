@@ -9,8 +9,11 @@
       </header>
       <div class="recently__scroll">
         <template v-for="el in 50">
-          <Album :title="el + ` Ricardo's hit on dark!`" :alt="el" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTwzwD4IspmiyxpCRLd0YMW1atCRRqZu2pXw&usqp=CAU" />
-          <Artist :name="el" src="https://i.scdn.co/image/ab6761610000e5ebcdce7620dc940db079bf4952" :alt="'ssss'" />
+          <Essence
+            img="https://avatars.akamai.steamstatic.com/5f93973fe38409e2dbc1fcb803696f59bfb624a9_full.jpg"
+            :title="el + ' Ricardo`s trak! yes'"
+            type="artist"
+          />
         </template>
       </div>
     </article>
@@ -21,9 +24,17 @@
         <h2 class="dark-wrapped__heading">Your 2022 in review</h2>
         <h3 class="dark-wrapped__hashtag">#DarkWrapped</h3>
       </header>
-      <div class="dark-wrapped__albums">
-        <Album title="Your top songs" src="" alt="sss" />
-        <Album title="Your artist revealed" src="" alt="sss" />
+      <div class="dark-wrapped__scroll">
+        <Essence
+          img="https://avatars.akamai.steamstatic.com/5f93973fe38409e2dbc1fcb803696f59bfb624a9_full.jpg"
+          title="sss"
+          type="album"
+        />
+        <Essence
+          img="https://avatars.akamai.steamstatic.com/5f93973fe38409e2dbc1fcb803696f59bfb624a9_full.jpg"
+          title="sss"
+          type="playlist"
+        />
       </div>
     </article>
 
@@ -32,8 +43,11 @@
         <h2 class="friends__heading">Friend's picks</h2>
       </header>
       <div class="friends__scroll">
-        <Album title="Урал. Закипитите булик к подъезду подхожу" src="https://topwar.ru/uploads/posts/2020-01/1579798554_ural375_1.jpg" alt="" />
-        <Album title="Кобра опасная. Полюбила" src="https://i.scdn.co/image/ab67616d0000b2732359238234e410f29d029c16" alt="" />
+        <Essence
+          img="https://avatars.akamai.steamstatic.com/5f93973fe38409e2dbc1fcb803696f59bfb624a9_full.jpg"
+          title="sss"
+          type="song"
+        />
       </div>
     </article>
   </article>
@@ -42,31 +56,69 @@
 
 <script>
 import HotBar from "@/components/HotBar";
-import Album from "@/components/Album";
-import Artist from "@/components/Artist";
+import Essence from "@/components/Home/Essence";
 
 export default {
   name: "Home",
   components: {
-    HotBar, Album, Artist
+    HotBar, Essence
   }
 }
 </script>
 
 <style scoped>
+
 h2 {
   font-size: 1em;
 }
 
-.recently {
-  padding: 2em 0 1em 1em;
+.recently,
+.dark-wrapped,
+.friends {
+  padding: 2em 0 1em 0;
+}
+
+.recently__scroll,
+.dark-wrapped__scroll,
+.friends__scroll {
+  padding: .3em 1rem;
+  white-space: nowrap;
+  overflow-x: scroll;
+}
+
+.recently__scroll {
+  font-size: 1rem;
+}
+.dark-wrapped__scroll,
+.friends__scroll {
+  font-size: 1.5em;
+}
+
+.recently__scroll::-webkit-scrollbar,
+.dark-wrapped__scroll::-webkit-scrollbar,
+.friends__scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.recently__header,
+.dark-wrapped__header,
+.friends__header {
+  padding: 0 1em;
 }
 .recently__header {
   display: grid;
   grid-template-columns: 1fr repeat(3, auto);
   grid-gap: .3em;
-  padding-right: 1em;
 }
+.dark-wrapped__header {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-areas:
+    'img hashtag'
+    'img heading';
+  grid-gap: 0 .5em;
+}
+
 .recently__heading {}
 
 .recently__notifications,
@@ -90,30 +142,6 @@ h2 {
   background-position: -23px -50px;
 }
 
-.recently__scroll {
-  font-size: 1em;
-  display: grid;
-  grid-template-columns: repeat(100, auto);
-  grid-gap: 1em;
-  padding: .3em 0;
-  overflow-x: scroll;
-}
-
-
-.dark-wrapped,
-.friends {
-  padding: 1em;
-  padding-right: 0;
-}
-.dark-wrapped__header {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  grid-template-areas:
-    'img hashtag'
-    'img heading';
-  grid-gap: 0 .5em;
-  padding: .3em 0;
-}
 .dark-wrapped__heading,
 .friends__heading {
   grid-area: heading;
@@ -132,18 +160,5 @@ h2 {
   width: 4em;
   height: 4em;
   border-radius: .2em;
-}
-.dark-wrapped__albums,
-.friends__scroll {
-  display: grid;
-  grid-template-columns: repeat(100, auto);
-  grid-gap: 1em;
-  overflow-x: scroll;
-  font-size: 1.5em;
-}
-.dark-wrapped__albums::-webkit-scrollbar,
-.friends__scroll::-webkit-scrollbar,
-.recently__scroll::-webkit-scrollbar {
-  display: none;
 }
 </style>
