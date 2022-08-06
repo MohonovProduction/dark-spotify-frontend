@@ -15,13 +15,26 @@
       <li class="categories__item">
         <button class="categories__button">Albums</button>
       </li>
+      <li class="categories__item">
+        <button class="categories__button">Songs</button>
+      </li>
     </ul>
     <article class="library">
-      <header class="library-header">
-        <button class="library-header__recently-played">Recently played</button>
-        <button class="library-header__change-display"></button>
+      <header class="library__header">
+        <button class="library__recently-played">Recently played</button>
+        <button class="library__change-display"></button>
       </header>
-
+      <ul class="library__list">
+        <li v-for="el in 50" class="library__item">
+          <Essence
+            where="your-library"
+            type="album"
+            :title="el + 'lorem ipsum dolor sit amet consectedur'"
+            :subtitle="el + 10000"
+            img="https://cdn.vox-cdn.com/thumbor/I7I0t87KZ-vf_GSWrH118jwl6d0=/1400x0/filters:no_upscale()/cdn.vox-cdn.com/uploads/chorus_asset/file/23437452/The_Spy_x_Family_Anime_Succeeds_Because_of_Its_Characters_.jpg"
+          />
+        </li>
+      </ul>
     </article>
   </article>
   <HotBar active="your-library" />
@@ -29,11 +42,12 @@
 
 <script>
 import HotBar from "@/components/HotBar.vue";
+import Essence from "@/components/Essence";
 
 export default {
   name: "YourLibrary",
   components: {
-    HotBar
+    HotBar, Essence
   }
 }
 </script>
@@ -82,16 +96,15 @@ export default {
 .categories {
   padding: 1em;
   list-style: none;
-  display: grid;
-  grid-template-columns: repeat(3, min-content);
-  grid-gap: .5em;
+  overflow-x: scroll;
 }
 .categories__item {
-  display: block;
+  display: inline-block;
+  margin-right: .5em;
 }
 .categories__button {
   color: var(--font-white);
-  padding: .8em 1.5em;
+  padding: .8em 1.25em;
   background-color: hsla(0, 0%, 0%, 0);
   border: 1px solid var(--bg-gray);
   border-radius: 3em;
@@ -100,25 +113,25 @@ export default {
 .library {
   padding: 1em 0;
 }
-.library-header {
+.library__header {
   display: grid;
   grid-template-columns: 1fr auto;
   align-items: center;
   padding: 0 1em;
 }
-.library-header__recently-played,
-.library-header__change-display {
+.library__recently-played,
+.library__change-display {
   display: block;
   justify-self: start;
   background: none;
   color: var(--font-white);
 }
-.library-header__recently-played {
+.library__recently-played {
   display: grid;
   grid-template-columns: auto 1fr;
   align-items: center;
 }
-.library-header__recently-played::before {
+.library__recently-played::before {
   content: '';
   display: block;
   width: 20px;
@@ -128,7 +141,7 @@ export default {
   background-repeat: no-repeat;
   background-position: -130px -54px;
 }
-.library-header__change-display {
+.library__change-display {
   padding: 0;
   width: 20px;
   height: 20px;
@@ -136,5 +149,9 @@ export default {
   background-image: url('../assets/icons.svg');
   background-repeat: no-repeat;
   background-position: -96px -46px;
+}
+
+.library__list {
+  font-size: 1.5rem;
 }
 </style>

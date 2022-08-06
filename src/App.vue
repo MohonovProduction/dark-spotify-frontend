@@ -8,7 +8,7 @@
 :root {
   padding: 0;
   margin: 0;
-  box-sizing: content-box;
+  box-sizing: border-box;
   --corner: 141;
   --bg: hsla(var(--corner), 0%, 7%, 1);
   --bg-dark-gray: hsla(var(--corner), 14%, 19%, 1);
@@ -18,6 +18,7 @@
   --bg-white: hsl(var(--corner), 4%, 96%);
   --font-white: hsl(var(--corner), 4%, 96%);
   --font-lighten-gray: hsl(var(--corner), 4%, 86%);
+  --font-gray: hsl(var(--corner), 4%, 70%);
   --font-black: hsla(var(--corner), 0%, 7%, 1);
   --primary-green: hsla(var(--corner), 76%, 48%, 1);
   --font-family: 'Open Sans', sans-serif;

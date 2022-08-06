@@ -13,6 +13,7 @@
             img="https://avatars.akamai.steamstatic.com/5f93973fe38409e2dbc1fcb803696f59bfb624a9_full.jpg"
             :title="el + ' Ricardo`s trak! yes'"
             type="artist"
+            where="home"
           />
         </template>
       </div>
@@ -29,11 +30,13 @@
           img="https://avatars.akamai.steamstatic.com/5f93973fe38409e2dbc1fcb803696f59bfb624a9_full.jpg"
           title="sss"
           type="album"
+          where="home"
         />
         <Essence
           img="https://avatars.akamai.steamstatic.com/5f93973fe38409e2dbc1fcb803696f59bfb624a9_full.jpg"
           title="sss"
           type="playlist"
+          where="home"
         />
       </div>
     </article>
@@ -47,6 +50,7 @@
           img="https://avatars.akamai.steamstatic.com/5f93973fe38409e2dbc1fcb803696f59bfb624a9_full.jpg"
           title="sss"
           type="song"
+          where="home"
         />
       </div>
     </article>
@@ -56,7 +60,7 @@
 
 <script>
 import HotBar from "@/components/HotBar";
-import Essence from "@/components/Home/Essence";
+import Essence from "@/components/Essence";
 
 export default {
   name: "Home",
