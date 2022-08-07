@@ -36,7 +36,8 @@ export default {
     justify-items: center;
     padding: 1em;
     user-select: none;
-    background-color: var(--bg);
+    background-color: var(--bg-darken);
+    line-height: initial;
   }
   .hot-bar__link:link,
   .hot-bar__link:visited,

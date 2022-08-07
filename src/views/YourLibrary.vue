@@ -3,7 +3,20 @@
     <header class="header">
       <img class="header__img" src="https://kinonevs.ru/wp-content/uploads/2021/08/ryan-gosling-reveals-he-and-eva-mendes-are-still-deeply-in-love-1628101080.jpg" alt="">
       <h1 class="header__heading">Your library</h1>
-      <button class="header__button"></button>
+      <button @click="this.show.addMenu = true" class="header__button"></button>
+      <transition name="slide-left">
+        <div v-if="show.addMenu" class="bubble-menu-wrapper">
+          <ul class="bubble-menu">
+            <li class="bubble-menu__item">
+              <button class="bubble-menu__button">Add song</button>
+            </li>
+            <li>
+              <button class="bubble-menu__button">Add friend</button>
+            </li>
+          </ul>
+          <div @click="this.show.addMenu = false" class="bubble-menu-backdrop"></div>
+        </div>
+      </transition>
     </header>
     <ul class="categories">
       <li class="categories__item">
@@ -48,14 +61,22 @@ export default {
   name: "YourLibrary",
   components: {
     HotBar, Essence
-  }
+  },
+  data() {
+    return {
+      show: {
+        addMenu: false
+      }
+    }
+  },
 }
 </script>
 
 <style scoped>
 .header {
+  position: relative;
   display: grid;
-  grid-template-columns: auto 1fr auto;
+  grid-template-columns: auto 1fr auto 0;
   grid-gap: .5em;
   align-items: center;
   padding: 2em 1em 1em 1em;
@@ -70,29 +91,79 @@ export default {
   font-weight: 600;
 }
 .header__button {
+  --size: .4em;
   box-sizing: content-box;
   position: relative;
-  background: none;
-  width: 1em;
-  height: 1em;
-  padding: .3em;
+  width: var(--size);
+  height: var(--size);
+  margin: 1em;
+  padding: 0;
+  border-radius: calc(var(--size) + 1em);
+  background-color: var(--bg-gray-light);
 }
 .header__button::before,
 .header__button::after {
+  --distance: -.7em;
   content: '';
   position: absolute;
-  top: 50%;
   left: 0;
   display: block;
-  width: 100%;
-  height: 2px;
-  background-color: var(--bg-gray-light);
+  width: var(--size);
+  height: var(--size);
+  background-color: inherit;
+  border-radius: inherit;
 }
 .header__button::before {
-
+  top: var(--distance);
 }
 .header__button::after {
-  transform: rotate(90deg);
+  bottom: var(--distance);
+}
+
+.bubble-menu-wrapper {
+  align-self: start;
+  position: relative;
+}
+.bubble-menu-backdrop {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 980;
+}
+
+.bubble-menu {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: .5em;
+  white-space: nowrap;
+  list-style: none;
+  background-color: var(--bg-dark);
+  border-radius: 1em;
+  z-index: 990;
+}
+
+.bubble-menu__item {
+  margin-bottom: .4em;
+}
+.bubble-menu__item:last-child {
+  margin-bottom: 0;
+}
+
+.bubble-menu__button {
+  display: block;
+  padding: .5em 1.25em;
+  width: 100%;
+  font-size: 1em;
+  color: var(--font-lighten-gray);
+  background-color: var(--bg-dark);
+  border-radius: .5em;
+}
+.bubble-menu__button:hover,
+.bubble-menu__button:active {
+  background-color: var(--bg-darken);
 }
 
 .categories {
