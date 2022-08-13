@@ -8,10 +8,13 @@
         <div v-if="show.addMenu" class="bubble-menu-wrapper">
           <ul class="bubble-menu">
             <li class="bubble-menu__item">
-              <button class="bubble-menu__button">Add song</button>
+              <button @click="this.show.addSong = true; this.show.addMenu = false" class="bubble-menu__button">Add song</button>
+            </li>
+            <li class="bubble-menu__item">
+              <button @click="this.show.createPlayList = true; this.show.addMenu = false" class="bubble-menu__button">Create playlist</button>
             </li>
             <li>
-              <button class="bubble-menu__button">Add friend</button>
+              <button @click="this.show.addFriend = true; this.show.addMenu = false" class="bubble-menu__button">Add friend</button>
             </li>
           </ul>
           <div @click="this.show.addMenu = false" class="bubble-menu-backdrop"></div>
@@ -50,25 +53,101 @@
       </ul>
     </article>
   </article>
+
   <HotBar active="your-library" />
+
+  <PopUp
+    title="Add friend"
+    :active="show.addFriend"
+    @close="this.show.addFriend = false"
+  >
+    <template v-slot:body>
+      <label>Enter your friend username</label>
+      <input type="text" />
+    </template>
+    <template v-slot:button>
+      <button
+        @click="addFriend"
+        class="button-primary"
+      >Add</button>
+    </template>
+  </PopUp>
+
+  <PopUp
+    title="Add song"
+    :active="show.addSong"
+    @close="this.show.addSong = false"
+  >
+    <template v-slot:body>
+      <label>Chose a song</label>
+      <input type="file" accept="audio">
+    </template>
+    <template v-slot:button>
+      <button
+        @click="addSong"
+        class="button-primary"
+      >Add</button>
+    </template>
+  </PopUp>
+
+  <PopUp
+    title="Create play list"
+    :active="show.createPlayList"
+    @close="this.show.createPlayList = false"
+  >
+    <template v-slot:body>
+      <label class="popup__label">Chose playlist name</label>
+      <input type="text">
+      <label class="popup__label">Chose playlist cover</label>
+      <input type="file" accept="image">
+    </template>
+    <template v-slot:button>
+      <button
+        @click="addSong"
+        class="button-primary"
+      >Create</button>
+    </template>
+  </PopUp>
 </template>
 
 <script>
 import HotBar from "@/components/HotBar.vue";
 import Essence from "@/components/Essence";
+import PopUp from "@/components/PopUp";
 
 export default {
   name: "YourLibrary",
   components: {
-    HotBar, Essence
+    HotBar, Essence, PopUp
   },
   data() {
     return {
       show: {
-        addMenu: false
-      }
+        addMenu: false,
+        addFriend: false,
+        addSong: false,
+        createPlayList: false
+      },
+      playList: {
+        songs: [
+          { name: 'Lorem' },
+          { name: 'Ipsum' },
+          { name: 'Dolor sit amet' },
+        ]
+      },
     }
   },
+  methods: {
+    addFriend() {
+
+    },
+    addSong() {
+
+    },
+    createPlayList() {
+
+    }
+  }
 }
 </script>
 
@@ -158,6 +237,7 @@ export default {
   width: 100%;
   font-size: 1em;
   color: var(--font-lighten-gray);
+  text-align: left;
   background-color: var(--bg-dark);
   border-radius: .5em;
 }

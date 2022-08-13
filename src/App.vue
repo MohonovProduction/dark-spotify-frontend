@@ -38,6 +38,7 @@
   box-sizing: border-box;
   --corner: 141;
   --bg: hsla(var(--corner), 5%, 9%, 1);
+  --bg-opacity: hsla(var(--corner), 5%, 9%, .8);
   --bg-darken: hsla(var(--corner), 5%, 13%, 1);
   --bg-dark: hsla(var(--corner),   5%, 19%, 1);
 
@@ -55,6 +56,13 @@
   --font-gray: hsla(var(--corner), 4%, 70%, 1);
   --font-black: hsla(var(--corner), 0%, 7%, 1);
   --font-family: 'Open Sans', sans-serif;
+
+  --z-index-hidden: -1000;
+  --z-index-popup-warpper: 990;
+  --z-index-popup-backdrop: 1000;
+  --z-index-popup: 1010;
+  --z-index-hot-bar: 2000;
+
   font-size: calc(.8em + 1vw);
   font-family: 'Open Sans', sans-serif;
   letter-spacing: .02em;
@@ -72,17 +80,6 @@
   padding: 0;
   margin: 0;
   box-sizing: inherit;
-}
-
-.wrapper {
-  min-height: 100vh;
-}
-
-.primary-line {
-  background-color: var(--primary);
-  color: var(--bg);
-  font-style: italic;
-  padding: 0 .25em;
 }
 
 textarea,
@@ -105,5 +102,25 @@ button {
   user-select: none;
   outline: none;
   padding: .5em;
+}
+
+.wrapper {
+  min-height: 100vh;
+}
+
+.primary-line {
+  background-color: var(--primary);
+  color: var(--bg);
+  font-style: italic;
+  padding: 0 .25em;
+}
+
+.button-primary {
+  justify-self: end;
+  font-weight: 600;
+  color: var(--font-black);
+  padding: .5em 2em;
+  background-color: var(--primary);
+  border-radius: 1em;
 }
 </style>

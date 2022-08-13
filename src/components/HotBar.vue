@@ -30,6 +30,7 @@ export default {
     position: sticky;
     bottom: 0;
     left: 0;
+    z-index: var(--z-index-hot-bar);
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 1em;
