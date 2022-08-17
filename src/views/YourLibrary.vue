@@ -3,21 +3,21 @@
     <header class="header">
       <img class="header__img" src="https://kinonevs.ru/wp-content/uploads/2021/08/ryan-gosling-reveals-he-and-eva-mendes-are-still-deeply-in-love-1628101080.jpg" alt="">
       <h1 class="header__heading">Your library</h1>
-      <button @click="this.show.addMenu = true" class="header__button"></button>
+      <button @click="this.headerPopup.show = true" class="header__button"></button>
       <transition name="slide-left">
-        <div v-if="show.addMenu" class="bubble-menu-wrapper">
+        <div v-if="headerPopup.show" class="bubble-menu-wrapper">
           <ul class="bubble-menu">
             <li class="bubble-menu__item">
-              <button @click="this.show.addSong = true; this.show.addMenu = false" class="bubble-menu__button">Add song</button>
+              <button @click="this.addSongPopup.show = true; this.headerPopup.show = false" class="bubble-menu__button">Add song</button>
             </li>
             <li class="bubble-menu__item">
-              <button @click="this.show.createPlayList = true; this.show.addMenu = false" class="bubble-menu__button">Create playlist</button>
+              <button @click="this.createPlayListPopup.show = true; this.headerPopup.show = false" class="bubble-menu__button">Create playlist</button>
             </li>
             <li>
-              <button @click="this.show.addFriend = true; this.show.addMenu = false" class="bubble-menu__button">Add friend</button>
+              <button @click="this.addFriendPopup.show = true; this.headerPopup.show = false" class="bubble-menu__button">Add friend</button>
             </li>
           </ul>
-          <div @click="this.show.addMenu = false" class="bubble-menu-backdrop"></div>
+          <div @click="this.headerPopup.show = false" class="bubble-menu-backdrop"></div>
         </div>
       </transition>
     </header>
@@ -58,54 +58,100 @@
 
   <PopUp
     title="Add friend"
-    :active="show.addFriend"
-    @close="this.show.addFriend = false"
+    :active="addFriendPopup.show"
+    @close="this.addFriendPopup.show = false"
   >
     <template v-slot:body>
-      <label>Enter your friend username</label>
-      <input type="text" />
+      <label class="popup__label">Enter your friend username</label>
+      <input
+        v-model="addFriendPopup.fields.username.value"
+        :class="{ 'field--wrong': addFriendPopup.fields.username.isWrong }"
+        type="text"
+      />
+      <label class="popup__label">Choose password</label>
+      <input
+        @keydown.enter="addFriend"
+        v-model="addFriendPopup.fields.password.value"
+        :class="{ 'field--wrong': addFriendPopup.fields.password.isWrong }"
+        type="text"
+      />
     </template>
     <template v-slot:button>
       <button
         @click="addFriend"
         class="button-primary"
-      >Add</button>
+      >
+        Add
+        <Loader
+          :show="addFriendPopup.loading"
+          background="--primary"
+          color="--font-black"
+          radius="2"
+        />
+      </button>
     </template>
   </PopUp>
 
   <PopUp
     title="Add song"
-    :active="show.addSong"
-    @close="this.show.addSong = false"
+    :active="addSongPopup.show"
+    @close="this.addSongPopup.show = false"
   >
     <template v-slot:body>
-      <label>Chose a song</label>
-      <input type="file" accept="audio">
+      <label>Chose a song or songs</label>
+      <input
+        @change="changeSong"
+        type="file"
+        accept="audio"
+        multiple
+      >
     </template>
     <template v-slot:button>
       <button
-        @click="addSong"
+        @click="addSongPopup"
         class="button-primary"
-      >Add</button>
+      >
+        Add
+        <Loader
+          :show="addSongPopup.loading"
+          background="--primary"
+          color="--font-black"
+          radius="2"
+        />
+      </button>
     </template>
   </PopUp>
 
   <PopUp
     title="Create play list"
-    :active="show.createPlayList"
-    @close="this.show.createPlayList = false"
+    :active="createPlayListPopup.show"
+    @close="this.createPlayListPopup.show = false"
   >
     <template v-slot:body>
       <label class="popup__label">Chose playlist name</label>
-      <input type="text">
+      <input
+        type="text"
+        v-model="createPlayListPopup.fields.title.value"
+      >
       <label class="popup__label">Chose playlist cover</label>
-      <input type="file" accept="image">
+      <input
+        type="file"
+        accept="image"
+      >
     </template>
     <template v-slot:button>
       <button
-        @click="addSong"
+        @click="createPlayListPopup"
         class="button-primary"
-      >Create</button>
+      >
+        Create
+        <Loader
+          :show="createPlayListPopup.loading"
+          background="--primary"
+          color="--font-black"
+          radius="2"
+        />
+      </button>
     </template>
   </PopUp>
 </template>
@@ -114,39 +160,113 @@
 import HotBar from "@/components/HotBar.vue";
 import Essence from "@/components/Essence";
 import PopUp from "@/components/PopUp";
+import Loader from "@/components/Loader";
+
+import Song from "@/api/Song";
+import User from "@/api/User";
 
 export default {
   name: "YourLibrary",
   components: {
-    HotBar, Essence, PopUp
+    HotBar, Essence, PopUp, Loader
   },
   data() {
     return {
-      show: {
-        addMenu: false,
-        addFriend: false,
-        addSong: false,
-        createPlayList: false
+      headerPopup: {
+        show: false
       },
-      playList: {
-        songs: [
-          { name: 'Lorem' },
-          { name: 'Ipsum' },
-          { name: 'Dolor sit amet' },
-        ]
+      addFriendPopup: {
+        show: false,
+        loading: false,
+        fields: {
+          username: {
+            value: '',
+            isWrong: false
+          },
+          password: {
+            value: '',
+            isWrong: false,
+          }
+        }
       },
+      addSongPopup: {
+        show: false,
+        loading: false,
+        fields: {
+          song: {
+            value: null,
+            isWrong: false
+          }
+        }
+      },
+      createPlayListPopup: {
+        show: false,
+        loading: false,
+        fields: {
+          title: {
+            value: null,
+            isWrong: false
+          },
+          cover: {
+            value: null,
+            isWrong: false
+          }
+        }
+      }
     }
   },
   methods: {
     addFriend() {
+      const fields = this.addFriendPopup.fields
+      if (fields.username.value === '' || fields.password.value === '') {
+        fields.username.isWrong = (fields.username.value === '')
+        fields.password.isWrong = (fields.password.value === '')
+        return
+      }
 
+      fields.username.isWrong = false
+      fields.password.isWrong = false
+
+      const data = {
+        user: {
+          login: fields.username.value,
+          password: fields.password.value
+        }
+      }
+
+      this.addFriendPopup.loading = true
+
+      User.createUser(data)
+      .then(data => {
+        console.log(data)
+      })
+      .catch(err => {
+        console.log(err)
+      })
     },
+    //
+    changeSong(event) {
+      this.songs = event.target.files
+      console.log('target', event.target)
+      console.log('songs', this.songs)
+    },
+    //
     addSong() {
-
+      const data = []
+      for (let song of this.songs) {
+        data  .push({
+          name: song.name,
+          artist: song.name
+        })
+      }
+      console.log(data, JSON.stringify(data))
+      Song.upload(data)
+        .then(data => console.log(data))
+        .catch(err => console.log(err))
     },
     createPlayList() {
 
-    }
+    },
   }
 }
 </script>

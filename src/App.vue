@@ -49,7 +49,9 @@
   --bg-gray-light: hsla(var(--corner), 0%, 65%, 1);
   --bg-white: hsla(var(--corner), 4%, 96%, 1);
 
-  --primary: hsla(var(--corner), 76%, 48%, 1);
+  --primary: hsla(var(--corner), 78%, 78%, 1);
+
+  --wrong-red: hsla(0, 80%, 40%, 1);
 
   --font-white: hsla(var(--corner), 4%, 96%, 1);
   --font-lighten-gray: hsla(var(--corner), 4%, 86%, 1);
@@ -62,6 +64,7 @@
   --z-index-popup-backdrop: 1000;
   --z-index-popup: 1010;
   --z-index-hot-bar: 2000;
+  --z-index-loader: 1020;
 
   font-size: calc(.8em + 1vw);
   font-family: 'Open Sans', sans-serif;
@@ -87,14 +90,19 @@ input {
   font-size: 1em;
   color: var(--font-white);
   padding: .5em;
-  background-color: var(--bg-dark-gray);
-  border: none;
+  background-color: var(--bg);
+  border: .2em solid hsla(0, 0%, 0%, 0);
   border-radius: .4em;
   outline: none;
+  transition: border-color .3s ease-in-out;
 }
 textarea::selection,
 input::selection {
   outline: var(--primary) solid .2em;
+}
+
+.field--wrong {
+  border-color: var(--wrong-red);
 }
 
 button {
@@ -116,6 +124,7 @@ button {
 }
 
 .button-primary {
+  position: relative;
   justify-self: end;
   font-weight: 600;
   color: var(--font-black);

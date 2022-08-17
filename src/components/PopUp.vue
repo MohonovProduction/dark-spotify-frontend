@@ -66,7 +66,7 @@ export default {
 
   padding: 2em 1.5em;
 
-  background-color: var(--bg);
+  background-color: var(--bg-darken);
   border-radius: 1em;
 
   transform: scale(.5);
